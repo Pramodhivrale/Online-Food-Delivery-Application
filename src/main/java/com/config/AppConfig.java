@@ -21,15 +21,15 @@ import jakarta.servlet.http.HttpServletRequest;
 @EnableWebSecurity
 public class AppConfig {
 
-	/*
-	 * this is one way to secure some specific url
-	 * http.authorizeHttpRequests((request) -> request
-	 * .antMatchers("/","/login","/about", "/swagger-ui.html").permitAll()
-	 * .anyRequest().authenticated() ).formLogin();
-	 * 
-	 * return http.build();
-	 * 
-	 */
+//	
+//	  this is one way to secure some specific url
+//	  http.authorizeHttpRequests((request) -> request
+//	  .antMatchers("/","/login","/about", "/swagger-ui.html").permitAll()
+//	  .anyRequest().authenticated() ).formLogin();
+//	  
+//	  return http.build();
+	  
+	 
 
 	/*
 	 * this is another way to secure some specific url
@@ -48,7 +48,8 @@ public class AppConfig {
 	 * 
 	 */
 
-	private SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+	@Bean
+	 SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
 		httpSecurity.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(
@@ -57,12 +58,13 @@ public class AppConfig {
 				.addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
 				.csrf(csrf -> csrf.disable())
 				.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+		
 		return httpSecurity.build();
 
 	}
 
 	@Bean
-	public CorsConfigurationSource corsConfigurationSource() {
+	CorsConfigurationSource corsConfigurationSource() {
 
 		return new CorsConfigurationSource() {
 

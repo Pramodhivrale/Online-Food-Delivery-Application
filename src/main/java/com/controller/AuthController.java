@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -50,7 +49,7 @@ public class AuthController {
 	public ResponseEntity<AuthResponse> creatUserHandeler(@RequestBody User user) throws Exception {
 
 		User isEmailExist = userRepository.findByEmail(user.getEmail());
-		if (isEmailExist == null) {
+		if (isEmailExist != null) {
 			throw new Exception("Email is allreday used with another account !");
 		}
 
@@ -91,7 +90,7 @@ public class AuthController {
 
 		AuthResponse authResponse = new AuthResponse();
 		authResponse.setJwt(jwt);
-		authResponse.setMessage("Register success");
+		authResponse.setMessage("Login success");
 
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		String role = authorities.isEmpty() ? null : authorities.iterator().next().getAuthority();
@@ -115,3 +114,15 @@ public class AuthController {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
