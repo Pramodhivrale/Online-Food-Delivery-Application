@@ -40,7 +40,7 @@ public class Food {
 	private boolean available;
 
 	@ManyToOne
-	private Restuarant resturant;
+	private Restaurant resturant;
 
 	private boolean isanVegiterain;
 	private boolean isanSeasonal;

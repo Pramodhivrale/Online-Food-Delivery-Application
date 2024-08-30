@@ -27,7 +27,7 @@ public class IngredientsItem {
 	
 	@JsonIgnore
 	@ManyToOne
-	private Restuarant restaurants;
+	private Restaurant restaurants;
 	
 	private boolean stock=true;
 	

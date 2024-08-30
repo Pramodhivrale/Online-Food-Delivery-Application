@@ -25,7 +25,7 @@ public class Category
 	
 	@ManyToOne
 	@JsonIgnore
-	private Restuarant restaurants;
+	private Restaurant restaurants;
 	
 	
 	

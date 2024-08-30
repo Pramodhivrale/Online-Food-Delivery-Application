@@ -32,7 +32,7 @@ public class Orders
 	
 	@JsonIgnore
 	@ManyToOne
-	private Restuarant restaurants;
+	private Restaurant restaurants;
 	
 	private Long orderAmount;
 	

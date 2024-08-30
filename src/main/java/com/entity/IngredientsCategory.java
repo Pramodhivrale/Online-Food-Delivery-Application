@@ -29,7 +29,7 @@ public class IngredientsCategory
 	
 	@JsonIgnore
 	@ManyToOne
-	private Restuarant restaurants;
+	private Restaurant restaurants;
 	
 	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
 	private List<IngredientsItem> ingredientsItems;
