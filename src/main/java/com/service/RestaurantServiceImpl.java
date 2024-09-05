@@ -25,9 +25,6 @@ public class RestaurantServiceImpl implements ResturantService {
 	private Addressrepo addressrepo;
 
 	@Autowired
-	private UserService userService;
-
-	@Autowired
 	private UserRepository userRepository;
 
 	@Override
