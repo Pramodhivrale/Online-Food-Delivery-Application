@@ -53,7 +53,7 @@ public class AppConfig {
 
 		httpSecurity.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(
-						Authorize -> Authorize.requestMatchers("/api/admin/**").hasAnyRole("RESTAURANT", "ADMIN")
+						Authorize -> Authorize.requestMatchers("/api/admin/**").hasAnyRole("RESTURANT_OWENER", "ADMIN")
 								.requestMatchers("/api/**").authenticated().anyRequest().permitAll())
 				.addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
 				.csrf(csrf -> csrf.disable())
@@ -75,7 +75,7 @@ public class AppConfig {
 				configuration.setAllowedMethods(Collections.singletonList("*")); // Allow all methods
 				configuration.setAllowedHeaders(Collections.singletonList("*")); // Allow all headers
 				configuration.setExposedHeaders(Arrays.asList("Authorization")); // Specify which headers to expose
-				configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080","","")); // Specify allowed origins
+				configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080")); // Specify allowed origins
 				configuration.setMaxAge(3600L); // Set cache duration for preflight requests
 				return configuration;
 			}

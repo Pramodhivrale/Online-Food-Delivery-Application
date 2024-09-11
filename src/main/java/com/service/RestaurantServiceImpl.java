@@ -37,7 +37,7 @@ public class RestaurantServiceImpl implements ResturantService {
 		restaurant.setCuisineType(req.getCuisineType());
 		restaurant.setDescription(req.getDescription());
 		restaurant.setImages(req.getImages());
-		restaurant.setResturantName(req.getName());
+		restaurant.setResturantName(req.getResturantName());
 		restaurant.setOpeningHoures(req.getOpeningHours());
 		restaurant.setRegistrationDate(LocalDateTime.now());
 		restaurant.setOwener(user);
@@ -58,7 +58,7 @@ public class RestaurantServiceImpl implements ResturantService {
 			restaurant.setDescription(updateRequest.getDescription());
 		}
 		if (restaurant.getResturantName() != null) {
-			restaurant.setResturantName(updateRequest.getName());
+			restaurant.setResturantName(updateRequest.getResturantName());
 		}
 
 		return resturantRepo.save(restaurant);
@@ -112,14 +112,21 @@ public class RestaurantServiceImpl implements ResturantService {
 		dto.setDescription(restaurant.getDescription());
 		dto.setImages(restaurant.getImages());
 		dto.setId(resturantId);
-
-		if (user.getFavourite().contains(dto)) {
-			user.getFavourite().remove(dto);
-		} else {
-			user.getFavourite().add(dto);
+	
+		boolean isfavorited=false;
+		List<RestuarantDao> favorites=user.getFavourite();
+		for(RestuarantDao fav : favorites) {
+			if(fav.getId().equals(resturantId)) {
+				isfavorited=true;
+				break;
+			}
 		}
-		userRepository.save(user);
-
+		if(isfavorited) {
+			favorites.removeIf(fav -> fav.getId().equals(resturantId));
+		}else {
+			favorites.add(dto);
+		}
+        userRepository.save(user);
 		return dto;
 	}
 

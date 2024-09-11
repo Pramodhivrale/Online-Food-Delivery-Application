@@ -11,7 +11,7 @@ import lombok.Data;
 public class CreateRestuarntRequest {
 
 	private Long id;
-	private String name;
+	private String resturantName;
 	private String description;
 	private String cuisineType;
 	private Address address;

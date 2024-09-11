@@ -42,6 +42,7 @@ public class JwtTokenValidator extends OncePerRequestFilter {
 				
 				
 				
+				
 				List<GrantedAuthority> auth=AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
                 Authentication authentication=new UsernamePasswordAuthenticationToken(email,null,auth);	
                 SecurityContextHolder.getContext().setAuthentication(authentication);
