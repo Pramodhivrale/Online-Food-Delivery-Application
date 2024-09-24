@@ -16,7 +16,7 @@ public interface CartService
 	
 	public Cart findCartById(Long id) throws Exception;
 	
-	public Cart findCartByuserId(Long userId)throws Exception;
+	public Cart findCartByuserId(String jwt)throws Exception;
 	
-	public Cart cleraCart(Long userId)throws Exception;
+	public Cart cleraCart(String jwt)throws Exception;
 }
