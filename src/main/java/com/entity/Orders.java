@@ -48,7 +48,7 @@ public class Orders
 	
 	//private Payment payment;
 	
-	private Integer totalPrice;
+	private Long totalPrice;
 	
 	private Integer totalItems;
 }
